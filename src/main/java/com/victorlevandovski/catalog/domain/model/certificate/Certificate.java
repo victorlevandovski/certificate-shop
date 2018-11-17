@@ -68,7 +68,7 @@ public class Certificate extends Entity {
     }
 
     private void setAccountId(AccountId accountId) {
-        this.assertNotNull(certificateId, "Account ID cannot be null");
+        this.assertNotNull(accountId, "Account ID cannot be null");
         this.accountId = accountId;
     }
 

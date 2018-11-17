@@ -7,7 +7,7 @@ public class CertificateDeliveryOptions extends ValueObject {
     private boolean electronicDeliveryAvailable;
     private boolean postalDeliveryAvailable;
 
-    CertificateDeliveryOptions(boolean electronicDeliveryAvailable, boolean postalDeliveryAvailable) {
+    public CertificateDeliveryOptions(boolean electronicDeliveryAvailable, boolean postalDeliveryAvailable) {
         if (!electronicDeliveryAvailable && !postalDeliveryAvailable) {
             throw new IllegalArgumentException("At least one delivery method must be available");
         }
