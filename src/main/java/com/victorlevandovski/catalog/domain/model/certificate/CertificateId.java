@@ -8,6 +8,10 @@ public class CertificateId extends Identity {
         super(id);
     }
 
+    protected CertificateId() {
+        super();
+    }
+
     @Override
     protected int hashOddValue() {
         return 37935;

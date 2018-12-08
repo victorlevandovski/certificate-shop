@@ -10,6 +10,10 @@ public abstract class Identity extends AssertableDomainObject {
         this.setId(id);
     }
 
+    protected Identity() {
+        super();
+    }
+
     public String id() {
         return this.id;
     }

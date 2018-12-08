@@ -8,6 +8,10 @@ public class AccountId extends Identity {
         super(id);
     }
 
+    protected AccountId() {
+        super();
+    }
+
     @Override
     protected int hashOddValue() {
         return 53971;

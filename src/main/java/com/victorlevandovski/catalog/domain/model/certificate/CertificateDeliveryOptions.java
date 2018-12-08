@@ -12,8 +12,8 @@ public class CertificateDeliveryOptions extends ValueObject {
             throw new IllegalArgumentException("At least one delivery method must be available");
         }
 
-        this.electronicDeliveryAvailable = electronicDeliveryAvailable;
-        this.postalDeliveryAvailable = postalDeliveryAvailable;
+        this.setElectronicDeliveryAvailable(electronicDeliveryAvailable);
+        this.setPostalDeliveryAvailable(postalDeliveryAvailable);
     }
 
     public boolean isElectronicDeliveryAvailable() {
@@ -22,5 +22,17 @@ public class CertificateDeliveryOptions extends ValueObject {
 
     public boolean isPostalDeliveryAvailable() {
         return this.postalDeliveryAvailable;
+    }
+
+    protected CertificateDeliveryOptions() {
+        super();
+    }
+
+    private void setElectronicDeliveryAvailable(boolean electronicDeliveryAvailable) {
+        this.electronicDeliveryAvailable = electronicDeliveryAvailable;
+    }
+
+    private void setPostalDeliveryAvailable(boolean postalDeliveryAvailable) {
+        this.postalDeliveryAvailable = postalDeliveryAvailable;
     }
 }

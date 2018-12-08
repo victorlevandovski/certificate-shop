@@ -9,6 +9,8 @@ public class Money implements Serializable {
     private Currency currency;
 
     public Money (BigDecimal amount, Currency currency) {
+        this();
+
         this.amount = amount;
         this.currency = currency;
     }
@@ -19,5 +21,9 @@ public class Money implements Serializable {
 
     public Currency currency() {
         return currency;
+    }
+
+    protected Money() {
+        super();
     }
 }

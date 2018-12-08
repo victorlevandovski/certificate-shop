@@ -23,7 +23,7 @@ public class Certificate extends Entity {
             CertificateDeliveryOptions deliveryOptions,
             boolean availableForSale) {
 
-        super();
+        this();
 
         this.setAccountId(accountId);
         this.setCertificateId(certificateId);
@@ -65,6 +65,10 @@ public class Certificate extends Entity {
     @Override
     public int hashCode() {
         return (5291 * 7) + this.accountId().hashCode() + this.certificateId().hashCode();
+    }
+
+    protected Certificate() {
+        super();
     }
 
     private void setAccountId(AccountId accountId) {

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field" default-cascade="all">
+    <class name="com.victorlevandovski.catalog.domain.model.certificate.Certificate" table="tbl_certificate" lazy="true">
+        <id name="id" type="long" column="id" unsaved-value="-1">
+            <generator class="native"/>
+        </id>
+        <component name="certificateId" class="com.victorlevandovski.catalog.domain.model.certificate.CertificateId">
+            <property name="id" column="certificate_id_id" type="java.lang.String" />
+        </component>
+        <component name="accountId" class="com.victorlevandovski.catalog.domain.model.account.AccountId">
+            <property name="id" column="account_id_id" type="java.lang.String" />
+        </component>
+        <property name="title" column="title" type="java.lang.String" />
+        <property name="description" column="description" type="java.lang.String" />
+        <component name="price" class="com.victorlevandovski.common.util.money.Money">
+            <property name="amount" column="price_amount" type="java.math.BigDecimal" />
+            <component name="currency" class="com.victorlevandovski.common.util.money.Currency">
+                <property name="code" column="price_currency_code" type="java.lang.String" />
+            </component>
+        </component>
+        <component name="deliveryOptions" class="com.victorlevandovski.catalog.domain.model.certificate.CertificateDeliveryOptions">
+            <property name="electronicDeliveryAvailable" column="electronic_delivery_available" type="boolean" />
+            <property name="postalDeliveryAvailable" column="postal_delivery_available" type="boolean" />
+        </component>
+    </class>
+</hibernate-mapping>
