@@ -21,8 +21,6 @@ public class SpringHibernateSessionProvider implements HibernateSessionProvider 
     }
 
     public Session session() {
-        // return this.sessionFactory.getCurrentSession();
-
         Session threadBoundSession = sessionHolder.get();
 
         if (threadBoundSession == null) {
