@@ -1,6 +1,8 @@
 package com.victorlevandovski.catalog.application.certificate;
 
-public class AddCertificateCommandResult {
+import com.victorlevandovski.common.application.command.CommandResult;
+
+public class AddCertificateCommandResult implements CommandResult {
 
     private String certificateId;
 

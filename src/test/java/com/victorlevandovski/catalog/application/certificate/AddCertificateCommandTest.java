@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-class CertificateApplicationServiceTest {
+class AddCertificateCommandTest {
 
     @Test
     void testAddCertificate() {
         CertificateRepository certificateRepository = new InMemoryCertificateRepository();
-        CertificateApplicationService service = new CertificateApplicationService(certificateRepository);
+        AddCertificateCommandHandler commandHandler = new AddCertificateCommandHandler(certificateRepository);
 
         AddCertificateCommand command = new AddCertificateCommand(
                 "account-1",
@@ -35,7 +35,7 @@ class CertificateApplicationServiceTest {
 
         AddCertificateCommandResult commandResult = new AddCertificateCommandResult();
 
-        service.addCertificate(command, commandResult);
+        commandHandler.handle(command, commandResult);
 
         assertNotNull(commandResult.certificateId());
         assertNotEquals(commandResult.certificateId(), "");

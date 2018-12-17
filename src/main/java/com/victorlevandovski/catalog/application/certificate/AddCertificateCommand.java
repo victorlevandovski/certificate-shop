@@ -1,8 +1,10 @@
 package com.victorlevandovski.catalog.application.certificate;
 
+import com.victorlevandovski.common.application.command.Command;
+
 import java.math.BigDecimal;
 
-public class AddCertificateCommand {
+public class AddCertificateCommand implements Command {
 
     private String accountId;
     private String title;

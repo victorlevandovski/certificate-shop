@@ -5,20 +5,29 @@ import com.victorlevandovski.catalog.domain.model.certificate.Certificate;
 import com.victorlevandovski.catalog.domain.model.certificate.CertificateDeliveryOptions;
 import com.victorlevandovski.catalog.domain.model.certificate.CertificateId;
 import com.victorlevandovski.catalog.domain.model.certificate.CertificateRepository;
+import com.victorlevandovski.common.application.command.CommandHandler;
 import com.victorlevandovski.common.util.money.Currency;
 import com.victorlevandovski.common.util.money.Money;
 
 import java.util.UUID;
 
-public class CertificateApplicationService {
+public class AddCertificateCommandHandler
+        implements CommandHandler<AddCertificateCommand, AddCertificateCommandResult> {
 
     private CertificateRepository certificateRepository;
 
-    public CertificateApplicationService(CertificateRepository certificateRepository) {
+    public AddCertificateCommandHandler(CertificateRepository certificateRepository) {
+        this();
+
         this.certificateRepository = certificateRepository;
     }
+    public AddCertificateCommandHandler() {
+        super();
+    }
 
-    public void addCertificate(AddCertificateCommand command, AddCertificateCommandResult commandResult) {
+    @Override
+    public void handle(AddCertificateCommand command, AddCertificateCommandResult commandResult) {
+
         String certificateId = UUID.randomUUID().toString();
 
         Certificate certificate = new Certificate(
@@ -27,7 +36,10 @@ public class CertificateApplicationService {
                 command.title(),
                 command.description(),
                 new Money(command.priceAmount(), new Currency(command.priceCurrency())),
-                new CertificateDeliveryOptions(command.isElectronicDeliveryAvailable(), command.isPostalDeliveryAvailable()),
+                new CertificateDeliveryOptions(
+                        command.isElectronicDeliveryAvailable(),
+                        command.isPostalDeliveryAvailable()
+                ),
                 command.isAvailableForSale()
         );
 

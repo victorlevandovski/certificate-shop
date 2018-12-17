@@ -1,10 +1,9 @@
 package com.victorlevandovski.common.spring;
 
-import com.victorlevandovski.common.infrastructure.persistence.HibernateSessionProvider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class SpringHibernateSessionProvider implements HibernateSessionProvider {
+public class SpringHibernateSessionProvider {
 
     private static final ThreadLocal<Session> sessionHolder = new ThreadLocal<>();
 
