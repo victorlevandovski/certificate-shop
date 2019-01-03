@@ -1,4 +1,4 @@
-package com.victorlevandovski.catalog.application.certificate;
+package com.victorlevandovski.catalog.application.command.certificate;
 
 import com.victorlevandovski.catalog.domain.model.account.AccountId;
 import com.victorlevandovski.catalog.domain.model.certificate.Certificate;

@@ -1,4 +1,4 @@
-package com.victorlevandovski.catalog.application.certificate;
+package com.victorlevandovski.catalog.application.command.certificate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
