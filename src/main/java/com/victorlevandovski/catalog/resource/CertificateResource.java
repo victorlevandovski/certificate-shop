@@ -17,20 +17,19 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/catalog")
+@RequestMapping("/catalog/accounts/{accountId}/certificates")
 public class CertificateResource extends AbstractResource {
 
-    @PostMapping("certificates")
+    @PostMapping
     public String addCertificate(
+            @PathVariable("accountId") String accountId,
             @RequestParam("title") String title,
             @RequestParam(value = "description", required = false) String description,
-            @RequestParam("price_amount") BigDecimal priceAmount,
-            @RequestParam("price_currency") String priceCurrency,
-            @RequestParam("electronic_delivery_available") boolean electronicDeliveryAvailable,
-            @RequestParam("postal_delivery_available") boolean postalDeliveryAvailable,
-            @RequestParam("available_for_sale") boolean availableForSale) {
-
-        String accountId = "account-1"; // Should be loaded from session
+            @RequestParam("priceAmount") BigDecimal priceAmount,
+            @RequestParam("priceCurrency") String priceCurrency,
+            @RequestParam("electronicDeliveryAvailable") boolean electronicDeliveryAvailable,
+            @RequestParam("postalDeliveryAvailable") boolean postalDeliveryAvailable,
+            @RequestParam("availableForSale") boolean availableForSale) {
 
         AddCertificateCommand command = new AddCertificateCommand(
                 accountId,
@@ -53,10 +52,10 @@ public class CertificateResource extends AbstractResource {
         return ObjectSerializer.instance().serialize(CertificateData.fromCertificate(certificate));
     }
 
-    @GetMapping("certificates/{certificate_id}")
-    public String certificate(@PathVariable("certificate_id") String certificateId) {
-
-        String accountId = "account-1"; // Should be loaded from session
+    @GetMapping("{certificateId}")
+    public String certificate(
+            @PathVariable("accountId") String accountId,
+            @PathVariable("certificateId") String certificateId) {
 
         Certificate certificate = this.certificateRepository().certificateOfId(
                 new AccountId(accountId),
@@ -65,11 +64,11 @@ public class CertificateResource extends AbstractResource {
         return ObjectSerializer.instance().serialize(CertificateData.fromCertificate(certificate));
     }
 
-    @DeleteMapping("certificates/{certificate_id}")
+    @DeleteMapping("{certificateId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeCertificate(@PathVariable("certificate_id") String certificateId) {
-
-        String accountId = "account-1"; // Should be loaded from session
+    public void removeCertificate(
+            @PathVariable("accountId") String accountId,
+            @PathVariable("certificateId") String certificateId) {
 
         RemoveCertificateCommand command = new RemoveCertificateCommand(accountId, certificateId);
         this.commandBus().handle(command, null);
